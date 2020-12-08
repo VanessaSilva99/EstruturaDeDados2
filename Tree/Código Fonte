@@ -1,0 +1,71 @@
+class Tree():
+
+    def __init__(self):
+        self.size = 0
+        self.root = None
+        self.items = []
+
+    def get_size(self):
+        return self.size
+
+    def make(self, data):
+        node = Node(data)
+        if self.root is None:
+            self.root = node
+        return node
+
+    def insert(self, data, tree):
+        if tree is None:
+            tree = self.make(data)
+        elif data < tree.data:
+            self.insert(data, tree.left)
+        else:
+            self.insert(data, tree.right)
+        self.size = self.size + 1
+
+    def inorder(self, tree):
+        if tree is None:
+            return self.items
+        self.inorder(tree.left)
+        print(tree.data)
+        self.inorder(tree.right)
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+
+class TreeTest(unittest.TestCase):
+
+    def setUp(self):
+        self.tree = Tree()
+
+    def test_size(self):
+        expected = 0
+        result = self.tree.get_size()
+        self.assertEqual(expected, result)
+
+    def test_insert(self):
+        data = 10
+        result = self.tree.insert(data, tree=None)
+        data = 5
+        result = self.tree.insert(data, tree=result)
+        expected = 2
+        result = self.tree.get_size()
+        self.assertEqual(expected, result)
+
+    def test_inorder(self):
+        tree = Tree()
+        element1 = tree.insert(10, None)
+        element2 = tree.insert(4, element1)
+        element3 = tree.insert(11, element2)
+        element4 = tree.insert(1, element3)
+        print(tree.inorder(element1))
+
+
+if __name__ == '__main__':
+    unittest.main()
