@@ -23,7 +23,7 @@ class ArvoreBinariaDeBusca:
         else:
             self.root = None
 
-    https://youtu.be/QC8oiQnlYos
+    # https://youtu.be/QC8oiQnlYos
     def percurso_pos_ordem(self, node=None):
         if node is None:
             node = self.root
@@ -171,30 +171,22 @@ class ArvoreBinariaDeBusca:
         return node.data
 
     def remove(self, value, node=ROOT):
-        # Se for o valor padrão, executa a partir da raiz
         if node == ROOT:
             node = self.root
-        # Se desceu até um ramo nulo, não há nada a fazer
         if node is None:
             return node
-        # Se o valor for menor, desce à esquerda
         if value < node.data:
             node.left = self.remove(value, node.left)
-        # Se o valor for maior, desce à direita
         elif value > node.data:
             node.right = self.remove(value, node.right)
-        # Se não for nem menor, nem maior, encontramos! Então o valor procurado é removido
         else:
             if node.left is None:
                 return node.right
             elif node.right is None:
                 return node.left
             else:
-                # Substituto é o sucessor do valor a ser removido
                 substituto = self.min(node.right)
-                # Ao invés de trocar a posição dos nós, troca o valor
                 node.data = substituto
-                # Depois, remove o substituto da subárvore à direita
                 node.right = self.remove(substituto, node.right)
 
         return node
