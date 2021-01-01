@@ -22,13 +22,11 @@ class BinaryTree:
         else:
             self.root = None
 
-    # Percurso em ordem simétrica (o correto é "inorder" em inglês)
+    # Percurso em ordem simétrica
     def simetric_traversal(self, node=None):
         if node is None:
             node = self.root
         if node.left:
-            # parênteses são específicos para o nosso exemplo,
-            # um percurso em ordem simétrica não precisa deles
             print('(', end='') 
             self.simetric_traversal(node.left)
         print(node, end='')
@@ -114,7 +112,7 @@ class BinarySearchTree(BinaryTree):
             return self._search(value, node.left)
         return self._search(value, node.right)
 
-    # Encontrando o MAIOR e o MENOR elemento numa ÁRVORE Binária de Busca: 
+    # o MAIOR e o MENOR elemento numa ÁRVORE Binária de Busca: 
     def min(self, node=ROOT):
         if node == ROOT:
             node = self.root
